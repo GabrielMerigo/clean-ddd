@@ -2,7 +2,7 @@ import { AnswersRepository } from "../repositories/answer-repository";
 import { AnswerQuestionUseCase } from "./answer-question";
 
 const fakeAnswerRepository: AnswersRepository = {
-  async create(answer) {
+  async create() {
     return;
   },
 };
