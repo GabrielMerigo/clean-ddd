@@ -22,6 +22,10 @@ export class Question extends Entity<QuestionProps> {
     return this.props.bestAnswerId;
   }
 
+  get slug() {
+    return this.props.slug;
+  }
+
   get title() {
     return this.props.title;
   }
