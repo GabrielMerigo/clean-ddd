@@ -1,26 +1,24 @@
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { makeQuestion } from "@/factories/make-question";
 import { InMemoryQuestionRepository } from "test/repositories/in-memory-questions-repository";
-import { Slug } from "../../enterprise/entities/values-objects/slug";
-import { GetQuestionBySlugUseCase } from "./get-question-by-slug";
+import { DeleteQuestionUseCase } from "./delete-question";
 
 let inMemoryQuestionsRepository: InMemoryQuestionRepository;
-let sut: GetQuestionBySlugUseCase;
+let sut: DeleteQuestionUseCase;
 
-describe("Get Question By Slug", () => {
+describe("Delete Question", () => {
   beforeEach(() => {
     inMemoryQuestionsRepository = new InMemoryQuestionRepository();
-    sut = new GetQuestionBySlugUseCase(inMemoryQuestionsRepository); // system under test
+    sut = new DeleteQuestionUseCase(inMemoryQuestionsRepository); // system under test
   });
 
   test("should be able to get a question by slug", async () => {
-    const newQuestion = makeQuestion({
-      slug: Slug.create("example-question"),
-    });
+    const newQuestion = makeQuestion({}, new UniqueEntityID("question-1"));
 
     inMemoryQuestionsRepository.create(newQuestion);
 
-    const { question } = await sut.execute({
-      slug: "example-question",
+    await sut.execute({
+      questionId: "question-1",
     });
 
     expect(question.id).toBeTruthy();
