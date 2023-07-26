@@ -1,10 +1,13 @@
+import { Question } from "../../enterprise/entities/question";
 import { QuestionsRepository } from "../repositories/questions-repository";
 
 interface IGetQuestionBySlugUseCaseProps {
   slug: string;
 }
 
-interface IGetQuestionBySlugUseCaseResponse {}
+interface IGetQuestionBySlugUseCaseResponse {
+  question: Question;
+}
 
 export class GetQuestionBySlugUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
