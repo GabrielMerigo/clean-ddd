@@ -27,7 +27,7 @@ describe("Comment on Answer", () => {
       answerId: answer.id.toString(),
       authorId: answer.authorId.toString(),
       content: "Test Commentary",
-    }); // Test Failing
+    });
 
     expect(inMemoryAnswersCommentsRepository.items[0].content).toEqual(
       "Test Commentary"
