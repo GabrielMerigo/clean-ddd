@@ -16,15 +16,15 @@ export abstract class Comment<
   }
 
   get content() {
-    return this.props.authorId.toString();
+    return this.props.content.toString();
   }
 
   get createdAt() {
-    return this.props.authorId;
+    return this.props.createdAt;
   }
 
   get updatedAt() {
-    return this.props.authorId;
+    return this.props.updatedAt;
   }
 
   private touch() {

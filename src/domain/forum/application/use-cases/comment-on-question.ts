@@ -33,7 +33,7 @@ export class CommentOnQuestionUseCase {
     const questionComment = QuestionComment.create({
       authorId: new UniqueEntityID(authorId),
       content,
-      questionId: new UniqueEntityID(authorId),
+      questionId: new UniqueEntityID(questionId),
     });
 
     await this.questionCommentsRepository.create(questionComment);

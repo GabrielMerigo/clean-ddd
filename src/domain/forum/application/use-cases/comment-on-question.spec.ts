@@ -29,7 +29,9 @@ describe("Comment on Question", () => {
       content: "Test Commentary",
     }); // Test Failing
 
-    expect(inMemoryQuestionRepository.items[0].content).toEqual(
+    console.log(inMemoryQuestionsCommentsRepository.items[0].content);
+
+    expect(inMemoryQuestionsCommentsRepository.items[0].content).toEqual(
       "Test Commentary"
     );
   });
