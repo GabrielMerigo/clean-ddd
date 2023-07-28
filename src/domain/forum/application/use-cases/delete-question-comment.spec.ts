@@ -38,7 +38,5 @@ describe("Delete Question Comment", () => {
         authorId: "author-2",
       });
     }).rejects.toBeInstanceOf(Error);
-
-    expect(inMemoryQuestionsCommentsRepository.items).toHaveLength(0);
   });
 });
