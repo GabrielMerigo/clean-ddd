@@ -1,3 +1,4 @@
+import { left, right } from "@/core/either";
 import { AnswersRepository } from "../repositories/answer-repository";
 
 interface IDeleteAnswerUseCaseProps {
@@ -17,15 +18,15 @@ export class DeleteAnswerUseCase {
     const answer = await this.answersRepository.findById(answerId);
 
     if (!answer) {
-      throw new Error("Answer not found.");
+      return left("Answer comment not found!");
     }
 
     if (authorId !== answer.authorId.toString()) {
-      throw new Error("Not Allowed.");
+      return left("Answer comment not found!");
     }
 
     await this.answersRepository.delete(answer);
 
-    return {};
+    return right({});
   }
 }
