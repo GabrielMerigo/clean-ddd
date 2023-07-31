@@ -3,12 +3,12 @@ import { AnswersCommentsRepository } from "../repositories/answer-comments-repos
 import { NotAllowedError } from "./errors/not-allowed-error";
 import { ResourceNotFoundError } from "./errors/resource-not-found";
 
-interface IAnswerCommentProps {
+interface AnswerCommentProps {
   answerCommentId: string;
   authorId: string;
 }
 
-type IAnswerCommentResponse = Either<
+type AnswerCommentResponse = Either<
   ResourceNotFoundError | NotAllowedError,
   object
 >;
@@ -19,7 +19,7 @@ export class DeleteAnswerCommentUseCase {
   async execute({
     authorId,
     answerCommentId,
-  }: IAnswerCommentProps): Promise<IAnswerCommentResponse> {
+  }: AnswerCommentProps): Promise<AnswerCommentResponse> {
     const answerComment = await this.answerCommentsRepository.findById(
       answerCommentId
     );

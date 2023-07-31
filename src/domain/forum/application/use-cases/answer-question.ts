@@ -1,16 +1,20 @@
+import { Either, right } from "@/core/either";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { Answer } from "@/domain/forum/enterprise/entities/answer";
 import { AnswersRepository } from "../repositories/answer-repository";
 
-interface IAnswerQuestionUseCaseProps {
+interface AnswerQuestionUseCaseProps {
   instructorId: string;
   questionId: string;
   content: string;
 }
 
-interface IAnswerQuestionUseCaseResponse {
-  answer: Answer;
-}
+type AnswerQuestionUseCaseResponse = Either<
+  null,
+  {
+    answer: Answer;
+  }
+>;
 
 export class AnswerQuestionUseCase {
   constructor(private answersRepository: AnswersRepository) {}
@@ -19,7 +23,7 @@ export class AnswerQuestionUseCase {
     instructorId,
     questionId,
     content,
-  }: IAnswerQuestionUseCaseProps): Promise<IAnswerQuestionUseCaseResponse> {
+  }: AnswerQuestionUseCaseProps): Promise<AnswerQuestionUseCaseResponse> {
     const answer = Answer.create({
       content,
       authorId: new UniqueEntityID(instructorId),
@@ -28,8 +32,8 @@ export class AnswerQuestionUseCase {
 
     await this.answersRepository.create(answer);
 
-    return {
+    return right({
       answer,
-    };
+    });
   }
 }
