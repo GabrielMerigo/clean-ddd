@@ -43,12 +43,12 @@ describe("Edit Answer", () => {
 
     inMemoryAnswersRepository.create(newAnswer);
 
-    expect(() => {
-      return sut.execute({
-        authorId: "author-2",
-        content: "test answer content updated",
-        answerId: newAnswer.id.toString(),
-      });
-    }).rejects.toBeInstanceOf(Error);
+    const result = await sut.execute({
+      authorId: "author-2",
+      content: "test answer content updated",
+      answerId: newAnswer.id.toString(),
+    });
+
+    expect(result.isLeft()).toBe(true);
   });
 });

@@ -8,7 +8,7 @@ interface FetchQuestionAnswersUseCaseProps {
 }
 
 type FetchQuestionAnswersUseCaseResponse = Either<
-  Answer,
+  null,
   {
     answers: Answer[];
   }

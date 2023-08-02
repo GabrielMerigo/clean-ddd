@@ -45,13 +45,13 @@ describe("Edit Question", () => {
 
     inMemoryQuestionsRepository.create(newQuestion);
 
-    expect(() => {
-      return sut.execute({
-        authorId: "author-2",
-        title: "test question title updated",
-        content: "test question content updated",
-        questionId: newQuestion.id.toString(),
-      });
-    }).rejects.toBeInstanceOf(Error);
+    const result = await sut.execute({
+      authorId: "author-2",
+      title: "test question title updated",
+      content: "test question content updated",
+      questionId: newQuestion.id.toString(),
+    });
+
+    expect(result.isLeft()).toBe(true);
   });
 });
