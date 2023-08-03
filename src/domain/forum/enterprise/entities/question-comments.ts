@@ -4,6 +4,7 @@ import { Comment, CommentsProps } from "./comment";
 
 export interface QuestionCommentProps extends CommentsProps {
   questionId: UniqueEntityID;
+  attachmentId: UniqueEntityID;
 }
 
 export class QuestionComment extends Comment<QuestionCommentProps> {
