@@ -14,6 +14,7 @@ export const makeQuestionComment = (
       authorId: new UniqueEntityID(),
       questionId: new UniqueEntityID(),
       content: faker.lorem.text(),
+      attachmentId: new UniqueEntityID(),
       ...override,
     },
     id

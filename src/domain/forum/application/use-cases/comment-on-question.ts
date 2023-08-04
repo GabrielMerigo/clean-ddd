@@ -39,6 +39,7 @@ export class CommentOnQuestionUseCase {
       authorId: new UniqueEntityID(authorId),
       content,
       questionId: new UniqueEntityID(questionId),
+      attachmentId: new UniqueEntityID("1"),
     });
 
     await this.questionCommentsRepository.create(questionComment);
