@@ -3,13 +3,13 @@ import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { Notification } from "../../enterprise/entities/notification";
 import { NotificationRepository } from "../repositories/notification-repository";
 
-interface SendNotificationUseCaseProps {
+export interface SendNotificationUseCaseProps {
   recipientId: string;
   title: string;
   content: string;
 }
 
-type SendNotificationUseCaseResponse = Either<
+export type SendNotificationUseCaseResponse = Either<
   null,
   {
     notification: Notification;

@@ -7,6 +7,7 @@ import { InMemoryAnswerRepository } from "test/repositories/in-memory-answers-re
 import { InMemoryNotificationRepository } from "test/repositories/in-memory-notification-repository";
 import { InMemoryQuestionAttachmentsRepository } from "test/repositories/in-memory-question-attachments-repository";
 import { InMemoryQuestionRepository } from "test/repositories/in-memory-questions-repository";
+import { waitFor } from "test/utils/wait-for";
 import { SendNotificationUseCase } from "../use-cases/send-notification";
 import { OnAnswerCreated } from "./on-answer-created";
 
@@ -35,6 +36,8 @@ describe("On Answer Created", () => {
       inMemoryAnswerAttachmentsRepository
     );
 
+    inMemoryNotificationRepository = new InMemoryNotificationRepository();
+
     sendNotificationUseCase = new SendNotificationUseCase(
       inMemoryNotificationRepository
     );
@@ -48,13 +51,15 @@ describe("On Answer Created", () => {
     );
   });
 
-  it("should send a notification when a new answer is created", () => {
+  it("should send a notification when a new answer is created", async () => {
     const question = makeQuestion();
     const answer = makeAnswer({ questionId: question.id });
 
     inMemoryQuestionsRepository.create(question);
     inMemoryAnswersRepository.create(answer);
 
-    expect(sendNotificationExecuteSpy).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(sendNotificationExecuteSpy).toHaveBeenCalled();
+    });
   });
 });
